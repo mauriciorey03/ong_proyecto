@@ -24,20 +24,17 @@ import com.ong.campus.repositories.entities.Campus;
 import com.ong.campus.services.ServiceCampus;
 import com.fasterxml.jackson.annotation.JsonView;
 
-// import io.swagger.v3.oas.annotations.Operation;
-// import io.swagger.v3.oas.annotations.tags.Tag;
+
 import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
 
 @RestController
-// @Tag(name = "Campus_Controller", description = "Methods availables for Campus")
 @RequestMapping("/campuses/")
 @AllArgsConstructor
 public class CampusController {
     
     private ServiceCampus serviceCampus;
     
-    // @Operation(summary = "Get a List with Campuses information")
     @GetMapping("/")
     @JsonView(CampusController.class)
     public ResponseEntity<List<CampusDTO>> findAll() {
@@ -49,7 +46,6 @@ public class CampusController {
         }
     }
 
-    // @Operation(summary = "Get a Campus by its ID")
     @GetMapping("/{id}")
     @JsonView(CampusController.class)
     public ResponseEntity<Map<String,Object>> findAllById(@PathVariable Long id)throws BussinesRuleException{
@@ -59,7 +55,6 @@ public class CampusController {
         return new ResponseEntity<>(response, HttpStatus.OK);
     }
 
-    // @Operation(summary = "Create a new Campus")
     @PostMapping("/")
     public ResponseEntity<Map<String, Object>> save(@Valid @RequestBody CampusDTO campus, BindingResult result){
         CampusDTO campusNew = null;
@@ -87,7 +82,6 @@ public class CampusController {
         return new ResponseEntity<>(response, HttpStatus.OK);
     }
 
-    // @Operation(summary = "Update the Campus information by its ID")
     @PutMapping("/{id}")
     public ResponseEntity<Map<String, Object>> update(@Valid @RequestBody Campus campus, BindingResult result,
             @PathVariable Long id) {
@@ -121,7 +115,6 @@ public class CampusController {
         return new ResponseEntity<>(response, HttpStatus.OK);
     }
 
-    // @Operation(summary = "Delete a Campus by its ID")
     @DeleteMapping("/{id}")
     public ResponseEntity<Map<String, Object>> delete(@PathVariable Long id) {
 

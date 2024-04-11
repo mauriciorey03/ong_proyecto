@@ -28,12 +28,10 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class Campus implements Serializable {
     
-  //@Schema(description = "Campus Identifier")
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   private Long id;
 
-  //@Schema(description = "Address of Campus")
   @Column(nullable = false)
   private String address;
 
@@ -42,7 +40,6 @@ public class Campus implements Serializable {
   @OneToOne(fetch = FetchType.LAZY)
   private City city;
 
-  //@Schema(description = "Director of the Campus")
   @JsonIgnoreProperties(value={"campuses", "hibernateLazyInitializer", "handler"}, allowSetters=true)
   @JoinColumn(name = "id_director", unique = true)
   @OneToOne(fetch = FetchType.LAZY)
